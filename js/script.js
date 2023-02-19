@@ -1,22 +1,28 @@
-let thead = document.querySelector('#headerTab');
+//====================    Class   ===========================
+class Person {
+  firctName;
+  lastName;
+  age;
+  company;
+  constructor(firctName, lastName, age, company) {
+    this.firctName = firctName;
+    this.lastName = lastName;
+    this.age = age;
+    this.company = company;
+  }
+}
+//===========================================================
+let thead = document.querySelector("#headerTab");
 let theadFirstnName = thead.cells[0];
 let theadLastName = thead.cells[1];
 let theadAge = thead.cells[2];
 let theadCompany = thead.cells[3];
-//==========================================================
-theadFirstnName.addEventListener('click', ()=>{
-    console.log(theadFirstnName.innerText);
-});
-theadLastName.addEventListener('click', ()=>{
-    console.log(theadLastName.innerText);
-});
-theadAge.addEventListener('click', ()=>{
-    console.log(theadAge.innerText);
-});
-theadCompany.addEventListener('click', ()=>{
-    console.log(theadCompany.innerText);
-});
-//===========================================================
+let sortSettingMinToMaxFirstnName = true;
+let sortSettingMinToMaxLastName = true;
+let sortSettingMinToMaxAge = true;
+let sortSettingMinToMaxCompany = true;
+
+//====================    Array   ===========================
 /*
 let bodyTab = document.querySelector('#bodyTab');
 console.log(bodyTab.children);
@@ -31,29 +37,137 @@ for (let i = 0; i < bodyTab.children.length; i++) {
 }    
 console.log(arrTable)
 */
-//===========================================================
-class Person{
-    firctName;
-    lastName;
-    age;
-    company;
-    constructor(firctName, lastName, age, company){
-        this.firctName = firctName;
-        this.lastName = lastName;
-        this.age = age;
-        this.company = company;
-    }
-}
-//===========================================================
-let bodyTab = document.querySelector('#bodyTab');
-console.log(bodyTab.children);
+
+let bodyTab = document.querySelector("#bodyTab");
+//console.log(bodyTab.children);
 let person = new Person();
-let personTab= [];
+let personTab = [];
 for (let i = 0; i < bodyTab.children.length; i++) {
-    person.firctName = bodyTab.children[i].cells[0].innerText;    
-    person.lastName = bodyTab.children[i].cells[1].innerText;    
-    person.age = bodyTab.children[i].cells[2].innerText;    
-    person.company = bodyTab.children[i].cells[3].innerText;  
-    personTab[i]=person.assign();
-}    
-console.log(personTab);
+  person.firctName = bodyTab.children[i].cells[0].innerText;
+  person.lastName = bodyTab.children[i].cells[1].innerText;
+  person.age = bodyTab.children[i].cells[2].innerText;
+  person.company = bodyTab.children[i].cells[3].innerText;
+  let newPerson = Object.assign({}, person);
+  personTab[i] = newPerson;
+}
+
+//====================    Functions  click ========================
+theadFirstnName.addEventListener("click", () => {
+  if (sortSettingMinToMaxFirstnName) {
+    sortSettingMinToMaxFirstnName = false;
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].firctName <= personTab[j].firctName) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
+        }
+      }
+    }
+  } else {
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].firctName >= personTab[j].firctName) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
+        }
+      }
+    }
+    sortSettingMinToMaxFirstnName = true;    
+  }
+  console.log(personTab);
+});
+
+theadLastName.addEventListener("click", () => {
+    if (sortSettingMinToMaxLastName) {
+        sortSettingMinToMaxLastName = false;
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].lastName <= personTab[j].lastName) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+      } else {
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].lastName >= personTab[j].lastName) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+        sortSettingMinToMaxLastName = true;    
+      }
+      console.log(personTab);
+});
+
+theadAge.addEventListener("click", () => {
+    if (sortSettingMinToMaxAge) {
+        sortSettingMinToMaxAge = false;
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].age <= personTab[j].age) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+      } else {
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].age >= personTab[j].age) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+        sortSettingMinToMaxAge = true;    
+      }
+      console.log(personTab);
+  console.log(theadAge.innerText);
+});
+
+theadCompany.addEventListener("click", () => {
+    if (sortSettingMinToMaxCompany) {
+        sortSettingMinToMaxCompany = false;
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].company <= personTab[j].company) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+      } else {
+        let tmp;
+        for (let i = 0; i < personTab.length; i++) {
+          for (let j = 0; j < personTab.length; j++) {
+            if (personTab[i].company >= personTab[j].company) {
+              tmp = personTab[i];
+              personTab[i] = personTab[j];
+              personTab[j] = tmp;
+            }
+          }
+        }
+        sortSettingMinToMaxCompany = true;    
+      }
+      console.log(personTab);
+  console.log(theadCompany.innerText);
+});
+
+//====================    Functions   ===========================
