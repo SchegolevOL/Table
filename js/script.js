@@ -76,98 +76,104 @@ theadFirstnName.addEventListener("click", () => {
         }
       }
     }
-    sortSettingMinToMaxFirstnName = true;    
+    sortSettingMinToMaxFirstnName = true;
   }
-  console.log(personTab);
-});
+  updateTab();
+  });
 
 theadLastName.addEventListener("click", () => {
-    if (sortSettingMinToMaxLastName) {
-        sortSettingMinToMaxLastName = false;
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].lastName <= personTab[j].lastName) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
+  if (sortSettingMinToMaxLastName) {
+    sortSettingMinToMaxLastName = false;
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].lastName <= personTab[j].lastName) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
         }
-      } else {
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].lastName >= personTab[j].lastName) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
-        }
-        sortSettingMinToMaxLastName = true;    
       }
-      console.log(personTab);
+    }
+  } else {
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].lastName >= personTab[j].lastName) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
+        }
+      }
+    }
+    sortSettingMinToMaxLastName = true;
+  }
+  updateTab();
 });
 
 theadAge.addEventListener("click", () => {
-    if (sortSettingMinToMaxAge) {
-        sortSettingMinToMaxAge = false;
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].age <= personTab[j].age) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
+  if (sortSettingMinToMaxAge) {
+    sortSettingMinToMaxAge = false;
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].age <= personTab[j].age) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
         }
-      } else {
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].age >= personTab[j].age) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
-        }
-        sortSettingMinToMaxAge = true;    
       }
-      console.log(personTab);
-  console.log(theadAge.innerText);
+    }
+  } else {
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].age >= personTab[j].age) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
+        }
+      }
+    }
+    sortSettingMinToMaxAge = true;
+  }
+  updateTab();
 });
 
 theadCompany.addEventListener("click", () => {
-    if (sortSettingMinToMaxCompany) {
-        sortSettingMinToMaxCompany = false;
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].company <= personTab[j].company) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
+  if (sortSettingMinToMaxCompany) {
+    sortSettingMinToMaxCompany = false;
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].company <= personTab[j].company) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
         }
-      } else {
-        let tmp;
-        for (let i = 0; i < personTab.length; i++) {
-          for (let j = 0; j < personTab.length; j++) {
-            if (personTab[i].company >= personTab[j].company) {
-              tmp = personTab[i];
-              personTab[i] = personTab[j];
-              personTab[j] = tmp;
-            }
-          }
-        }
-        sortSettingMinToMaxCompany = true;    
       }
-      console.log(personTab);
-  console.log(theadCompany.innerText);
+    }
+  } else {
+    let tmp;
+    for (let i = 0; i < personTab.length; i++) {
+      for (let j = 0; j < personTab.length; j++) {
+        if (personTab[i].company >= personTab[j].company) {
+          tmp = personTab[i];
+          personTab[i] = personTab[j];
+          personTab[j] = tmp;
+        }
+      }
+    }
+    sortSettingMinToMaxCompany = true;
+  }
+  updateTab();
 });
 
 //====================    Functions   ===========================
+function updateTab() {
+  for (let i = 0; i < personTab.length; i++) {
+    bodyTab.children[i].cells[0].innerText = personTab[i].firctName;
+    bodyTab.children[i].cells[1].innerText = personTab[i].lastName;
+    bodyTab.children[i].cells[2].innerText = personTab[i].age;
+    bodyTab.children[i].cells[3].innerText = personTab[i].company;
+  }
+}
